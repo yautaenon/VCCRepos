@@ -2,26 +2,25 @@
 
 パッケージを作成するためのスターター、それらを構築して公開するための自動化など。
 
-すべてセットアップすると、このリポジトリに変更をプッシュし、.zip および.unityPackage バージョンが自動的に生成され、このパッケージの更新を提供するために VPM で機能するリストが作成されます。さまざまなパッケージでリストを作成する場合は、[テンプレートパッケージリスト](https://github.com/vrchat-c​​ommunity/template-package-listing) repo をご覧ください。
+すべてセットアップすると、このリポジトリに変更をプッシュし、.zip および.unityPackage バージョンが自動的に生成され、このパッケージの更新を提供するために VPM で機能するリストが作成されます。さまざまなパッケージを使用してリストを作成する場合は、[テンプレートパッケージリスト](https://github.com/vrchat-community/template-package-listing)のリポジトリをチェックしてください。
 
-## ▶ はじめる
+## ▶ 開始
 
-- Press [![Use This Template](https://user-images.githubusercontent.com/737888/185467681-e5fdb099-d99f-454b-8d9e-0760e5a6e588.png)](https://github.com/vrchat-community/template-package/generate)
-  to start a new GitHub project based on this template.
-  - Choose a fitting repository name and description.
-  - Set the visibility to 'Public'. You can also choose 'Private' and change it later.
-  - You don't need to select 'Include all branches.'
-- Clone this repository locally using Git.
-  - If you're unfamiliar with Git and GitHub, [visit GitHub's documentation](https://docs.github.com/en/get-started/quickstart/git-and-github-learning-resources) to learn more.
-- Add the folder to Unity Hub and open it as a Unity Project.
-- After opening the project, wait while the VPM resolver is downloaded and added to your project.
-  - This gives you access to the VPM Package Maker and Package Resolver tools.
+- [![このテンプレートを使用](https://user-images.githubusercontent.com/737888/185467681-e5fdb099-d99f-454b-8d9e-0760e5a6e588.png)](https://github.com/vrchat-community/template-package/generate)を押して、このテンプレートに基づいて新しい GitHub プロジェクトを開始します。
+- フィッティングリポジトリの名前と説明を選択します。
+- 「パブリック」に可視性を設定します。「プライベート」を選択して、後で変更することもできます。
+- 「すべてのブランチを含める」を選択する必要はありません。
+  -Git を使用してこのリポジトリをローカルにクローンします。
+- Git と Github に不慣れな場合は、[Github のドキュメント](https://docs.github.com/en/get-started/quickstart/git-and-github-learning-resources)をご覧ください。
+- フォルダーを Unity ハブに追加し、Unity プロジェクトとして開きます。
+- プロジェクトを開いた後、VPM リゾルバーがダウンロードされ、プロジェクトに追加されたら待ちます。
+- これにより、VPM パッケージメーカーとパッケージリゾルバーツールにアクセスできます。
 
-## 🚇 Migrating Assets Package
+## 🚇 アセットからパッケージへの移行
 
-Full details at [Converting Assets to a VPM Package](https://vcc.docs.vrchat.com/guides/convert-unitypackage)
+[アセットを VPM パッケージに変換](https://vcc.docs.vrchat.com/guides/convert-unitypackage)を参照。
 
-## ✏️ Working on Your Package
+## ✏️ あなたのパッケージで作業
 
 - Delete the "Packages/com.vrchat.demo-template" directory or reuse it for your own package.
   - If you reuse the package, don't forget to rename it and add generated meta files to your repository!
@@ -34,9 +33,9 @@ Full details at [Converting Assets to a VPM Package](https://vcc.docs.vrchat.com
 
 ## 🤖 Setting up the Automation
 
-Create a repository variable with the name and value described below.
-For details on how to create repository variables, see [Creating Configuration Variables for a Repository](https://docs.github.com/en/actions/learn-github-actions/variables#creating-configuration-variables-for-a-repository).
-Make sure you are creating a **repository variable**, and not a **repository secret**.
+以下で説明する名前と値を持つリポジトリ変数を作成します。
+リポジトリ変数の作成方法の詳細については、[リポジトリの構成変数の作成](https://docs.github.com/en/actions/learn-github-actions/variables#creating-configuration-variables-for-a-repository)を参照してください。
+**リポジトリ秘密**ではなく、**リポジトリ変数**を作成していることを確認してください。
 
 - `PACKAGE_NAME`: the name of your package, like `com.vrchat.demo-template`.
 
