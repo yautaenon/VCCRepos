@@ -1,79 +1,84 @@
 # VPM パッケージテンプレート
 
-パッケージを作成するためのスターター、それらを構築して公開するための自動化など。
+パッケージのビルドと公開の自動化を含む、パッケージ作成用のスターターです。
 
-すべてセットアップすると、このリポジトリに変更をプッシュし、.zip および.unityPackage バージョンが自動的に生成され、このパッケージの更新を提供するために VPM で機能するリストが作成されます。さまざまなパッケージを使用してリストを作成する場合は、[テンプレートパッケージリスト](https://github.com/vrchat-community/template-package-listing)のリポジトリをチェックしてください。
+すべてのセットアップが完了したら、このリポジトリに変更をプッシュし、.zip や .unitypackage のバージョンが自動的に生成され、このパッケージのアップデートを配信する VPM で動作するリストが作成されます。いろいろなパッケージの一覧を作りたい場合は、[template-package-listing](https://github.com/vrchat-community/template-package-listing) リポジトリをチェックしてください。
 
-## ▶ 開始
+## ▶ はじめに
 
-- [![このテンプレートを使用](https://user-images.githubusercontent.com/737888/185467681-e5fdb099-d99f-454b-8d9e-0760e5a6e588.png)](https://github.com/vrchat-community/template-package/generate)を押して、このテンプレートに基づいて新しい GitHub プロジェクトを開始します。
-- フィッティングリポジトリの名前と説明を選択します。
-- 「パブリック」に可視性を設定します。「プライベート」を選択して、後で変更することもできます。
-- 「すべてのブランチを含める」を選択する必要はありません。
-  -Git を使用してこのリポジトリをローカルにクローンします。
-- Git と Github に不慣れな場合は、[Github のドキュメント](https://docs.github.com/en/get-started/quickstart/git-and-github-learning-resources)をご覧ください。
-- フォルダーを Unity ハブに追加し、Unity プロジェクトとして開きます。
-- プロジェクトを開いた後、VPM リゾルバーがダウンロードされ、プロジェクトに追加されたら待ちます。
-- これにより、VPM パッケージメーカーとパッケージリゾルバーツールにアクセスできます。
+- [![このテンプレートを使う](https://user-images.githubusercontent.com/737888/185467681-e5fdb099-d99f-454b-8d9e-0760e5a6e588.png)](https://github.com/vrchat-community/template-package/generate) を押してください。
+  をクリックすると、このテンプレートをもとにした新しい GitHub プロジェクトが始まります。
+  - 適切なリポジトリ名と説明を選びます。
+  - 可視性を 'Public' に設定します。'Private'を選んで後で変更することもできます。
+  - Include all branches' を選択する必要はありません。
+- Git を使って、このリポジトリをローカルにクローンします。
+  - Git や GitHub に慣れていない場合は、[GitHub のドキュメント](https://docs.github.com/en/get-started/quickstart/git-and-github-learning-resources) を参照してください。
+- Unity Hub にフォルダを追加し、Unity プロジェクトとして開きます。
+- プロジェクトを開いたら、VPM リゾルバがダウンロードされ、プロジェクトに追加されるまで待ちます。
+  - これで VPM Package Maker と Package Resolver ツールにアクセスできるようになります。
 
-## 🚇 アセットからパッケージへの移行
+## 🚇 アセットパッケージの移行
 
-[アセットを VPM パッケージに変換](https://vcc.docs.vrchat.com/guides/convert-unitypackage)を参照。
+詳細は [アセットを VPM パッケージに変換する](https://vcc.docs.vrchat.com/guides/convert-unitypackage) を参照。
 
-## ✏️ あなたのパッケージで作業
+## ✏️ パッケージの作業
 
-- Delete the "Packages/com.vrchat.demo-template" directory or reuse it for your own package.
-  - If you reuse the package, don't forget to rename it and add generated meta files to your repository!
-- Update the `.gitignore` file in the "Packages" directory to include your package.
-  - For example, change `!com.vrchat.demo-template` to `!com.username.package-name`.
-  - `.gitignore` files normally _exclude_ the contents of your "Packages" directory. This `.gitignore` in this template show how to _include_ the demo package. You can easily change this out for your own package name.
-- Open the Unity project and work on your package's files in your favorite code editor.
-- When you're ready, commit and push your changes.
-- Once you've set up the automation as described below, you can easily publish new versions.
+- "Packages/com.vrchat.demo-template" ディレクトリを削除するか、独自のパッケージに再利用してください。
+  - パッケージを再利用する場合は、名前を変更し、生成されたメタファイルをリポジトリに追加することを忘れないでください！
+- 「Packages」ディレクトリの `.gitignore` ファイルを更新して、あなたのパッケージを含めるようにします。
+  - 例えば、`!com.vrchat.demo-template` を `!com.username.package-name` に変更します。
+  - `.gitignore` ファイルは通常、「Packages」ディレクトリの内容を除外します。このテンプレートの `.gitignore` は、デモパッケージをどのように含めるかを示しています。これを自分のパッケージ名に変更するのは簡単です。
+- Unity プロジェクトを開き、パッケージのファイルを好きなコードエディタで作業してください。
+- 準備ができたら、コミットして変更をプッシュします。
+- 後述するように自動化を設定したら、新しいバージョンを簡単に公開できます。
 
-## 🤖 Setting up the Automation
+## 🤖 オートメーションのセットアップ
 
-以下で説明する名前と値を持つリポジトリ変数を作成します。
-リポジトリ変数の作成方法の詳細については、[リポジトリの構成変数の作成](https://docs.github.com/en/actions/learn-github-actions/variables#creating-configuration-variables-for-a-repository)を参照してください。
-**リポジトリ秘密**ではなく、**リポジトリ変数**を作成していることを確認してください。
+以下に説明する名前と値を持つリポジトリ変数を作成します。
+リポジトリ変数の作成方法の詳細については、[リポジトリの設定変数の作成](https://docs.github.com/en/actions/learn-github-actions/variables#creating-configuration-variables-for-a-repository) を参照してください。
+**Repository secrets**ではなく、**Repository variables**を作成していることを確認してください。
 
-- `PACKAGE_NAME`: the name of your package, like `com.vrchat.demo-template`.
+- `PACKAGE_NAME`: パッケージ名で、`com.vrchat.demo-template`のようにします。
 
-Finally, go to the "Settings" page for your repo, then choose "Pages", and look for the heading "Build and deployment". Change the "Source" dropdown from "Deploy from a branch" to "GitHub Actions".
+最後に、リポジトリの 「Settings」ページに行き、「Pages」を選択し、「Build and deployment」の見出しを探します。「Source」のドロップダウンを「Deploy from a branch」から「GitHub Actions」に変更します。
 
-That's it!
-Some other notes:
+これで完了です！
+他にも注意点があります：
 
-- We highly recommend you keep the existing folder structure of this template.
-  - The root of the project should be a Unity project.
-  - Your packages should be in the "Packages" directory.
-  - If you deviate from this folder structure, you'll need to update the paths that assume your package is in the "Packages" directory on lines 24, 38, 41 and 57.
-- If you want to store and generate your web files in a folder other than "Website" in the root, you can change the `listPublicDirectory` item [here in build-listing.yml](.github/workflows/build-listing.yml#L17).
+- このテンプレートの既存のフォルダ構造を維持することを強くお勧めします。
+  - プロジェクトのルートは Unity プロジェクトにしてください。
+  - パッケージは 「Packages」ディレクトリに置いてください。
+  - このフォルダ構造から外れる場合は、24 行目、38 行目、41 行目、57 行目の 「Packages」ディレクトリにパッケージがあると仮定するパスを更新する必要があります。
+- Web ファイルをルートの 「Website」 以外のフォルダに保存・生成したい場合は、[build-listing.yml](.github/workflows/build-listing.yml#L17) の`listPublicDirectory`項目を変更します。
 
-## 🎉 Publishing a Release
+## 🎉 リリースの公開
 
-You can make a release by running the [Build Release](.github/workflows/release.yml) action. The version specified in your `package.json` file will be used to define the version of the release.
+[Build Release](.github/workflows/release.yml) アクションを実行することでリリースを作成できます。`package.json`ファイルで指定したバージョンがリリースのバージョンとして使用されます。
 
-## 📃 Rebuilding the Listing
+## 📃 リストの再構築
 
-Whenever you make a change to a release - manually publishing it, or manually creating, editing or deleting a release, the [Build Repo Listing](.github/workflows/build-listing.yml) action will make a new index of all the releases available, and publish them as a website hosted fore free on [GitHub Pages](https://pages.github.com/). This listing can be used by the VPM to keep your package up to date, and the generated index page can serve as a simple landing page with info for your package. The URL for your package will be in the format `https://username.github.io/repo-name`.
+手動でリリースを公開したり、手動でリリースを作成・編集・削除したりと、リリースに変更を加えるたびに、[Build Repo Listing](.github/workflows/build-listing.yml) アクションは利用可能なすべてのリリースの新しいインデックスを作成し、[GitHub Pages](https://pages.github.com/) に無料でホストされるウェブサイトとして公開します。
 
-## 🏠 Customizing the Landing Page (Optional)
+生成されたインデックスページは、あなたのパッケージの情報を掲載したシンプルなランディングページとして利用できます。あなたのパッケージの URL は `https://username.github.io/repo-name` という形式になります。
 
-The action which rebuilds the listing also publishes a landing page. The source for this page is in `Website/index.html`. The automation system uses [Scriban](https://github.com/scriban/scriban) to fill in the objects like `{{ this }}` with information from the latest release's manifest, so it will stay up-to-date with the name, id and description that you provide there. You are welcome to modify this page however you want - just use the existing `{{ template.objects }}` to fill in that info wherever you like. The entire contents of your "Website" folder are published to your GitHub Page each time.
+## 🏠 ランディングページのカスタマイズ (オプション)
 
-## 💻 Technical Stuff
+リストを再構築するアクションはランディングページも公開します。<br>
+このページのソースは `Website/index.html` にあります。<br>
+オートメーションシステムは [Scriban](https://github.com/scriban/scriban) を使って`{{ this }}`のようなオブジェクトに最新リリースのマニフェストからの情報を入力します。既存の`{{ template.objects }}`を使って好きなところに情報を埋めてください。"Website" フォルダの内容全体が、毎回 GitHub Pages に公開されます。
 
-You are welcome to make your own changes to the automation process to make it fit your needs, and you can create Pull Requests if you have some changes you think we should adopt. Here's some more info on the included automation:
+## 💻 技術的なこと
 
-### Build Release Action
+自動化プロセスをあなたのニーズに合うように変更することは大歓迎です。また、私たちが採用すべきだと思う変更があれば、Pull Request を作成してください。また、採用すべき変更があれば Pull Request を作成することもできます：
+
+### ビルドリリースアクション
 
 [release.yml](/.github/workflows/release.yml)
 
-This is a composite action combining a variety of existing GitHub Actions and some shell commands to create both a .zip of your Package and a .unitypackage. It creates a release which is named for the `version` in the `package.json` file found in your target Package, and publishes the zip, the unitypackage and the package.json file to this release.
+これは、既存の GitHub アクションとシェルコマンドを組み合わせた複合アクションで、パッケージの .zip と .unitypackage の両方を作成します。対象のパッケージの `package.json` ファイルにある `version` という名前のリリースを作成し、zip、unitypackage、package.json ファイルをこのリリースに公開します。
 
-### Build Repo Listing
+### ビルドリスト
 
 [build-listing.yml](.github/workflows/build-listing.yml)
 
-This is a composite action which builds a vpm-compatible [Repo Listing](https://vcc.docs.vrchat.com/vpm/repos) based on the releases you've created. In order to find all your releases and combine them into a listing, it checks out [another repository](https://github.com/vrchat-community/package-list-action) which has a [Nuke](https://nuke.build/) project which includes the VPM core lib to have access to its types and methods. This project will be expanded to include more functionality in the future - for now, the action just calls its `BuildRepoListing` target.
+これは、作成したリリースに基づいて vpm 互換の[Repo Listing](https://vcc.docs.vrchat.com/vpm/repos)をビルドする複合アクションです。すべてのリリースを見つけ、リストにまとめるために、[別のリポジトリ](https://github.com/vrchat-community/package-list-action)をチェックアウトします。このリポジトリには、VPM コア lib を含む[Nuke](https://nuke.build/)プロジェクトがあり、その型とメソッドにアクセスできるようになっています。このプロジェクトは将来もっと多くの機能を含むように拡張される予定です――今のところ、このアクションは `BuildRepoListing` ターゲットを呼び出すだけです。
